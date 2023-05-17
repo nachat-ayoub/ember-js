@@ -1,1 +1,1 @@
-# js-2d-game-engine
+# A kind of game engine designed for Javascript 2d games
