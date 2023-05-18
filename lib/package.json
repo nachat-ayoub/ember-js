@@ -1,0 +1,16 @@
+{
+  "name": "js-2d-game-engine",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "repository": "https://github.com/nachat-ayoub/js-2d-game-engine.git",
+  "author": "nachat-ayoub <venomx2020x@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.ts --no-cache",
+    "build": "parcel build src/index.ts"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^5.0.4"
+  }
+}
