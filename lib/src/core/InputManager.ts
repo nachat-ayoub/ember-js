@@ -22,6 +22,7 @@ export default class InputManager {
   private handleKeyDown = (event: KeyboardEvent) => {
     const key: IGameKeys['KeyboardKeys'] =
       event.key as IGameKeys['KeyboardKeys'];
+
     this.keyboardKeys.add(key);
   };
 
@@ -57,8 +58,8 @@ export default class InputManager {
   };
 
   private setupEventListeners() {
-    this.canvas.addEventListener('keydown', this.handleKeyDown);
-    this.canvas.addEventListener('keyup', this.handleKeyUp);
+    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keyup', this.handleKeyUp);
 
     this.canvas.addEventListener('mousedown', this.handleMouseDown);
     this.canvas.addEventListener('mouseup', this.handleMouseUp);

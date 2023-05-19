@@ -33,6 +33,11 @@ export default class GameObject2d {
   x: number;
   y: number;
   z: number;
+  velocity = {
+    x: 0,
+    y: 0,
+    z: 0,
+  };
 
   width: number;
   height: number;
@@ -71,7 +76,11 @@ export default class GameObject2d {
     }
   }
 
-  update(deltaTime?: number) {}
+  update(deltaTime?: number) {
+    this.x += this.velocity.x;
+    this.y += this.velocity.y;
+    this.z += this.velocity.z;
+  }
 
   createSprite(sprite: TCreateSpriteProps) {
     this.sprite = {
