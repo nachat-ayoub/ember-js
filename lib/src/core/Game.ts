@@ -13,6 +13,7 @@ export default class Game {
   canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   inputManager: InputManager;
+  gameObjects = [];
 
   constructor(params: IGameParams) {
     this.width = params.width;
@@ -23,8 +24,8 @@ export default class Game {
     }
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
-
     this.inputManager = new InputManager(this.canvas);
+    this.gameObjects = [];
   }
 
   // ? make the canvas element and set it's id:
@@ -52,10 +53,6 @@ export default class Game {
     if (cb) cb();
   }
 
-  clearCanvas() {
-    this.ctx.clearRect(0, 0, 500, 300);
-  }
-
   // ? run's every frame to update graphics
   draw = (cb?: (ctx: CanvasRenderingContext2D) => void, clearCanvas = true) => {
     if (clearCanvas) {
@@ -66,4 +63,19 @@ export default class Game {
       cb(this.ctx);
     }
   };
+
+  // ? default method to clear canvas:
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, 500, 300);
+  }
+
+  create2dObject({ width, height, x, y, z = 0 }: I2dObjectParams) {}
+}
+
+interface I2dObjectParams {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
+  z?: number;
 }

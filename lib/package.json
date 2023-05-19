@@ -1,8 +1,8 @@
 {
-  "name": "ember-engine",
+  "name": "ember-js",
   "version": "1.0.0",
   "main": "src/index.ts",
-  "repository": "https://github.com/nachat-ayoub/ember-engine.git",
+  "repository": "https://github.com/nachat-ayoub/ember-js.git",
   "author": "nachat-ayoub <venomx2020x@gmail.com>",
   "license": "MIT",
   "scripts": {

@@ -1,4 +1,4 @@
-import { Game, gameLoop } from '2d-game-engine';
+import { Game, gameLoop } from 'ember-js';
 
 import './style.css';
 
@@ -40,7 +40,6 @@ gameLoop((deltaTime) => {
 
     if (game.inputManager.isMousePressed('MouseLeft')) {
       const { x, y } = game.inputManager.getMousePosition();
-
       console.log('MousePosition: ', { x, y });
 
       rect.x = x;
