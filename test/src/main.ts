@@ -20,35 +20,50 @@ let rect = {
   colors: ['red', 'orange', 'green', 'yellow', 'lime', 'lightblue'],
 };
 
+const dino = game.create2dObject({
+  tag: 'DinoTard',
+  x: 200,
+  y: 100,
+  z: 0,
+  width: 100,
+  height: 100,
+  sprite: {
+    fps: 20,
+    width: 48,
+    height: 48,
+    image: document.querySelector('#DinoTard') as HTMLImageElement,
+    maxFrames: 5,
+  },
+});
+
 gameLoop((deltaTime) => {
   game.update(deltaTime, () => {
-    if (rect.x > game.width || rect.y > game.height) {
-      rect.x = rect.x > game.width ? -rect.width : rect.x;
-      rect.y = rect.y > game.height ? -rect.height : rect.y;
-
-      rect.speedX = Math.floor(Math.random() * 6 + 1);
-      rect.speedY = Math.floor(Math.random() * 6 + 1);
-
-      let selctedColor =
-        rect.colors[Math.floor(Math.random() * rect.colors.length + 1)];
-
-      rect.color = selctedColor;
-    } else {
-      rect.x += rect.speedX;
-      rect.y += rect.speedY;
-    }
-
     if (game.inputManager.isMousePressed('MouseLeft')) {
-      const { x, y } = game.inputManager.getMousePosition();
-      console.log('MousePosition: ', { x, y });
-
-      rect.x = x;
-      rect.y = y;
+      if (dino.sprite) {
+        if (dino.sprite?.frameY > 3) {
+          dino.sprite.frameY = 0;
+        } else dino.sprite.frameY++;
+      }
     }
   });
 
   game.draw((ctx) => {
-    ctx.fillStyle = rect.color;
-    ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+    if (dino.sprite) {
+      ctx.drawImage(
+        dino.sprite.image,
+        dino.sprite.frameX * dino.sprite.width,
+        dino.sprite.frameY * dino.sprite.height,
+        dino.sprite.width,
+        dino.sprite.height,
+        dino.x,
+        dino.y,
+        dino.width,
+        dino.height
+      );
+    }
+    dino.draw(ctx, deltaTime);
+
+    // ctx.fillStyle = rect.color;
+    // ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
   });
 });

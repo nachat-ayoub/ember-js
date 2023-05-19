@@ -1,3 +1,4 @@
+import GameObject2d, { IGameObject2dProps } from './GameObject2d';
 import InputManager from './InputManager';
 
 interface IGameParams {
@@ -13,7 +14,8 @@ export default class Game {
   canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   inputManager: InputManager;
-  gameObjects = [];
+  gameObjects: GameObject2d[];
+  deltaTime: number;
 
   constructor(params: IGameParams) {
     this.width = params.width;
@@ -50,6 +52,8 @@ export default class Game {
 
   // ? run's every frame
   update(deltaTime: number, cb?: () => void) {
+    this.deltaTime = deltaTime;
+
     if (cb) cb();
   }
 
@@ -61,6 +65,8 @@ export default class Game {
 
     if (cb) {
       cb(this.ctx);
+    } else {
+      this.gameObjects.map((obj) => obj.draw(this.ctx, this.deltaTime));
     }
   };
 
@@ -69,13 +75,9 @@ export default class Game {
     this.ctx.clearRect(0, 0, 500, 300);
   }
 
-  create2dObject({ width, height, x, y, z = 0 }: I2dObjectParams) {}
-}
-
-interface I2dObjectParams {
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-  z?: number;
+  create2dObject(props: IGameObject2dProps): GameObject2d {
+    const gameObject = new GameObject2d(this, props);
+    this.gameObjects.push(gameObject);
+    return gameObject;
+  }
 }
