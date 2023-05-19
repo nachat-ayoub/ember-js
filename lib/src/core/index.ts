@@ -1,5 +1,5 @@
-import { Game } from './Game';
-import { InputManager } from './InputManager';
+import Game from './Game';
+import InputManager from './InputManager';
 
 export { Game, InputManager };
 

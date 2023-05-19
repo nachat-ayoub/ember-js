@@ -1,6 +1,13 @@
-import { Game, gameLoop } from 'js-2d-game-engine';
+import { Game, gameLoop } from '2d-game-engine';
 
-const game = new Game({ canvasId: 'game', width: 500, height: 300 });
+import './style.css';
+
+const game = new Game({
+  canvasId: 'game',
+  width: 500,
+  height: 300,
+  canvasContainer: 'div#app',
+});
 
 let rect = {
   width: 100,
@@ -9,7 +16,7 @@ let rect = {
   y: 0,
   speedX: 2,
   speedY: 2,
-  color: 'orange',
+  color: 'red',
   colors: ['red', 'orange', 'green', 'yellow', 'lime', 'lightblue'],
 };
 
@@ -26,10 +33,18 @@ gameLoop((deltaTime) => {
         rect.colors[Math.floor(Math.random() * rect.colors.length + 1)];
 
       rect.color = selctedColor;
-      // console.log({ speedX: rect.speedX, speedY: rect.speedY });
     } else {
       rect.x += rect.speedX;
       rect.y += rect.speedY;
+    }
+
+    if (game.inputManager.isMousePressed('MouseLeft')) {
+      const { x, y } = game.inputManager.getMousePosition();
+
+      console.log('MousePosition: ', { x, y });
+
+      rect.x = x;
+      rect.y = y;
     }
   });
 
