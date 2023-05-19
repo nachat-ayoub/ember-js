@@ -1,8 +1,8 @@
 {
-  "name": "2d-game-engine",
+  "name": "ember-engine",
   "version": "1.0.0",
   "main": "src/index.ts",
-  "repository": "https://github.com/nachat-ayoub/js-2d-game-engine.git",
+  "repository": "https://github.com/nachat-ayoub/ember-engine.git",
   "author": "nachat-ayoub <venomx2020x@gmail.com>",
   "license": "MIT",
   "scripts": {
